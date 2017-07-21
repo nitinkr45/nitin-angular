@@ -1,0 +1,50 @@
+
+<div class="row" style="padding: 15px;">
+    <div class="col-sm-10"><h2 style="padding: 0; margin: 0;">Users Listing</h2></div>
+    <div class="col-sm-2"><button type="button" class="btn" ng-click="changePage('new_user')" >Add New</button></div>
+    
+</div>
+
+<div class="alert alert-success" ng-show="successMsg">
+    {{successMsg}}
+</div>
+
+<div class="alert alert-danger" ng-show="errMsg">
+    {{errMsg}}
+</div>
+<!--<table class="table" ng-if="users.length>0">-->
+<table class="table" ng-show="users.length>0">
+<tr>
+    <th>
+        <input type="checkbox" ng-click="checkAll()" ng-model="$parent.allCheck" />
+        <input type="button" id="btnDelete" ng-click="deleteSelected()" value="Delete" />
+    </th>
+    <th ng-click="sortData('id')">Id</th>
+    <th ng-click="sortData('name')">Name</th>
+    <th ng-click="sortData('email')">Email</th>
+    <th ng-click="sortData('phone')">Phone</th>
+    <th ng-click="sortData('gender')">Gender</th>
+    <th ng-click="sortData('status')">Status</th>
+    <th ng-click="sortData('entry_date')">Entry Date</th>
+    <th>Actions</th>
+</tr>
+<tr ng-repeat="user in users | orderBy:sort.column:sort.order">
+    <td>
+        <input type="checkbox" ng-click="checkEveryRow()" ng-model="user.checkRow" ng-checked="user.checkRow">
+    </td>
+    <td>{{user.id}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.phone}}</td>
+    <td>{{user.gender}}</td>
+    <td>{{user.status}}</td>
+    <td>{{user.entry_date}}</td>
+    <td>
+    <a>Edit</a> |
+    <a ng-click="delete(user.id)">Delete</a>
+    </td>
+</tr>
+</table>
+<div ng-if="users.length==0">
+    <h2 style="text-align: center">No Record Found</h2>
+</div>

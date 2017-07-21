@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crud Operation</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <script src="libs/angular.min.js"></script>
+        <script src="apps/app.js"></script>
+        <script src="controllers/userController.js"></script>
+        
+    </head>
+    <body>        
+        <div ng-app="curdapp">
+            <div ng-controller="userController">
+                <div ng-include="templateDir+page"></div>
+            </div>            
+        </div>
+    </body>
+</html>
