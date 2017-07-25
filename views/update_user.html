@@ -1,0 +1,51 @@
+<h2 ng-show="user.id != null">Edit {{user.id}}</h2>
+<h2 ng-hide="user.id != null">Create</h2>
+<div class="alert alert-success" ng-show="successMsg">
+    {{successMsg}}
+</div>
+
+<div class="alert alert-danger" ng-show="errMsg">
+    {{errMsg}}
+</div>
+<hr>
+<form name="$parent.userForm" ng-submit="updateData(user)" novalidate="novalidate" class="form-horizontal" >
+    <div class="form-group">
+        <label class="col-sm-2" >Name</label>
+        <div class="col-sm-10" >
+            <input type="text" ng-model="user.name" name="name" ng-required="true" class="form-control">
+            <p ng-show="$parent.userForm.name.$error.required && ($parent.userForm.$submitted || $parent.userForm.name.$dirty)" class="text-danger"> Validation msg</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2" >Email</label>
+        <div class="col-sm-10" >
+            <input type="email" ng-model="user.email" name="email" ng-required="true" class="form-control">
+            <p ng-show="($parent.userForm.email.$error.required || $parent.userForm.email.$error.email) && ($parent.userForm.$submitted || $parent.userForm.email.$dirty) " class="text-danger"> Validation msg</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2" >Phone</label>
+        <div class="col-sm-10" >
+            <input type="number" ng-model="user.phone" name="phone" ng-required="true" class="form-control">
+            <p ng-show="$parent.userForm.phone.$error.required && $parent.userForm.phone.$invalid && ($parent.userForm.$submitted || $parent.userForm.phone.$dirty)" class="text-danger"> Validation msg</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2" >Gender</label>
+        <div class="col-sm-10" >
+            <select name="gender" ng-model="user.gender" ng-required="true" class="form-control">
+                <option ng-repeat="x in genderList" value="{{x.key}}">{{x.val}}</option>
+            </select>
+            <p ng-show="$parent.userForm.gender.$error.required && $parent.userForm.gender.$invalid && ($parent.userForm.$submitted || $parent.userForm.gender.$dirty)" class="text-danger"> Validation msg</p>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10" >
+            <input type="submit" value="Update" class="btn btn-primary" ng-show="user.id != null">
+            <input type="submit" value="Save" class="btn btn-primary" ng-hide="user.id != null">
+            <a ng-click="changePage('index')" >Cancel</a>
+        </div>
+        
+    </div>
+</form>
